@@ -53,6 +53,7 @@ static sockmap_t *sockmap = NULL;
 
 static int setmap(const char *desc, const char *name) {
   sockmap_t *prev = NULL, *curr = sockmap;
+  debugp("Setting map for %s->%s\n", desc, name);
 
   // find the last entry in the list
   while (curr != NULL) { prev = curr; curr = curr->next; }
@@ -72,6 +73,7 @@ static const char * getmapname(const char *desc) {
   for (sockmap_t *curr = sockmap; curr != NULL; curr = curr->next) {
     if (strcmp(curr->desc, desc) == 0) return curr->name;
   }
+  debugp("No match for %s\n", desc);
   return NULL;
 }
 
